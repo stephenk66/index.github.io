@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rental/Lease Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: blue; /* blue background */
+            position: relative;
+            min-height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: black; /* black text */
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 6px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+
+        .section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+        }
+
+        .inline {
+            display: inline-block;
+            width: 48%;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h2>Rental/Lease Application</h2>
+    <form id="rentalForm" action="#" method="post">
+
+        <label>Date of Application:</label>
+        <input type="date" name="application_date" required>
+
+        <label>Property Address:</label>
+        <input type="text" name="property_address" required>
+
+        <label>Unit No.:</label>
+        <input type="text" name="unit_number">
+
+        <label>City, State, Zip Code:</label>
+        <input type="text" name="city_state_zip" required>
+
+        <!-- Applicant 1 -->
+        <div class="section">
+            <h3>Applicant 1</h3>
+            <label>First Name:</label>
+            <input type="text" name="first_name1" required>
+
+            <label>Middle Initial:</label>
+            <input type="text" name="middle_initial1">
+
+            <label>Last Name:</label>
+            <input type="text" name="last_name1" required>
+
+            <label>Date of Birth:</label>
+            <input type="date" name="dob1" required>
+
+            <label>Social Security Number:</label>
+            <input type="text" name="ssn1" required>
+
+            <label>Phone Number:</label>
+            <input type="tel" name="phone1" required>
+
+            <label>Email Address:</label>
+            <input type="email" name="email1" required>
+
+            <label>Driver's License No.:</label>
+            <input type="text" name="license_no1">
+
+            <label>Driver's License State of Issue:</label>
+            <input type="text" name="license_state1">
+        </div>
+
+        <!-- Applicant 2 -->
+        <div class="section">
+            <h3>Applicant 2</h3>
+            <label>First Name:</label>
+            <input type="text" name="first_name2">
+
+            <label>Middle Initial:</label>
+            <input type="text" name="middle_initial2">
+
+            <label>Last Name:</label>
+            <input type="text" name="last_name2">
+
+            <label>Date of Birth:</label>
+            <input type="date" name="dob2">
+
+            <label>Social Security Number:</label>
+            <input type="text" name="ssn2">
+
+            <label>Phone Number:</label>
+            <input type="tel" name="phone2">
+
+            <label>Email Address:</label>
+            <input type="email" name="email2">
+
+            <label>Driver's License No.:</label>
+            <input type="text" name="license_no2">
+
+            <label>Driver's License State of Issue:</label>
+            <input type="text" name="license_state2">
+        </div>
+
+        <!-- Residence History -->
+        <div class="section">
+            <h3>Residence History</h3>
+            <label>Years of History:</label>
+            <input type="number" name="res_history_years" required>
+
+            <h4>Current Address</h4>
+            <label>Address:</label>
+            <input type="text" name="current_address" required>
+
+            <label>Unit No.:</label>
+            <input type="text" name="current_unit">
+
+            <label>City, State, Zip Code:</label>
+            <input type="text" name="current_city_state_zip" required>
+
+            <label>Dates of Residence:</label>
+            <input type="text" name="residence_dates" required>
+
+            <label>Monthly Rent:</label>
+            <input type="number" name="monthly_rent" required>
+
+            <label>Reason for Moving:</label>
+            <input type="text" name="reason_moving" required>
+
+            <label>Check One:</label>
+            <select name="own_rent" required>
+                <option value="">-- Select --</option>
+                <option value="own">Own</option>
+                <option value="rent">Rent</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label>If Rent, Name of Landlord:</label>
+            <input type="text" name="landlord_name">
+
+            <label>Landlord Phone No.:</label>
+            <input type="tel" name="landlord_phone">
+        </div>
+
+        <!-- Employment -->
+        <div class="section">
+            <h3>Employment / Financial</h3>
+            <label>Years of History:</label>
+            <input type="number" name="employment_years" required>
+
+            <label>Current Employer:</label>
+            <input type="text" name="employer" required>
+
+            <label>Position/Title:</label>
+            <input type="text" name="position" required>
+
+            <label>Employer Address:</label>
+            <input type="text" name="employer_address" required>
+
+            <label>City, State, Zip Code:</label>
+            <input type="text" name="employer_city_state_zip" required>
+        </div>
+
+        <button id="submitBtn" type="submit">Submit Application</button>
+    </form>
+
+    <script>
+        document.getElementById("rentalForm").addEventListener("submit", function(event) {
+            if (!this.checkValidity()) {
+                event.preventDefault(); // stop submit
+                alert("❌ Please fill in all required fields before submitting.");
+                return;
+            }
+            event.preventDefault(); // prevent real page reload
+            let btn = document.getElementById("submitBtn");
+            btn.textContent = "Submit Successful";
+            btn.disabled = true;
+            alert("✅ Application Submitted Successfully!");
+        });
+    </script>
+</body>
+</html>
